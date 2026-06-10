@@ -8,10 +8,14 @@ let root: Root | null = null;
 
 // Similar to previous code, 
 // rewrite it so that root - windows can be exposed to the host app
-function renderApp() {
+
+// Modify the definition to accept props
+// Default it to {}
+function renderApp(props: MicroAppProps = {}) {
  const rootElement = document.getElementById('root') as HTMLElement;
  root = createRoot(rootElement);
- root.render(<App />);
+ // pass down the code to the App Component
+ root.render(<App {...props}/>);
 }
 
 
@@ -22,10 +26,13 @@ export async function bootstrap() {
 }
 // To override the event when the microapp is mounted to parent app
 // this method receive a props as parameter
-// prop handling - data from parent to microapp will happens here
-export async function mount(props: any) {
+// prop handling - data from parent to microapp will be retrieved here here
+// props - is what is passed from the hostapp to microapp
+
+export async function mount(props: MicroAppProps) {
  console.log('Micro-app mounted', props);
- renderApp();
+ // pass the props inside renderApp function
+ renderApp(props);
 }
 
 

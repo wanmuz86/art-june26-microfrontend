@@ -33,6 +33,14 @@ createRoot(document.getElementById('root')!).render(
 )
 
 
+// DATA going to passed to the microapp as props
+
+// Host data to pass to micro-app
+const hostData = {
+ message: 'Hello from the Host App!',
+}
+
+
 // Register micro-app
 // We will have one application that is going to run on port 4173
 // This is a microapp called react-app
@@ -45,6 +53,9 @@ registerMicroApps([
     entry: '//localhost:4173/micro-app/',
     container: '#micro-app-container',
     activeRule: '/app', // route in host app
+    props:{
+      initialData:hostData  // Pass the props down
+    }
   },
 ]);
 

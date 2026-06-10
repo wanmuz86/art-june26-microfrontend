@@ -1,6 +1,18 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { useEffect } from 'react'
+function App(props: MicroAppProps) {
 
-function App() {
+
+  // To make it simple we read the prop on console  
+  // when the micro app load for the first time
+   useEffect(() => {
+   if (props.initialData) {
+     console.log('Received initial data:', props.initialData.message)
+   }
+ }, [props.initialData])
+
+
+
   // Get correct basename based on environment
 
   // Set the base URL either if it is called from HOST or directly from microapp

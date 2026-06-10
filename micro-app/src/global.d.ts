@@ -9,3 +9,12 @@ interface Window {
    unmount: () => Promise<void>;
  };
 }
+
+// Define the type of Props (for typescript)
+
+// Props interface for micro-app
+interface MicroAppProps {
+ initialData?: {
+   message: string
+ }
+}
