@@ -37,7 +37,7 @@ function App(props: MicroAppProps) {
    },
    {
      path: "/details",
-     element: <Details  />,
+     element: <Details  {...props} />,
    },
    {
      path: "*",
@@ -56,8 +56,27 @@ function App(props: MicroAppProps) {
 function Home() {
  return <div>Micro-Frontend Home Page</div>
 }
-function Details() {
- return <div>Micro-Frontend Details component</div>
+
+// Props needs to be passed down from App component
+function Details(props: MicroAppProps) {
+  // Defining UI that will pass up data (button clicked)
+  // We can also see the data retrieved from host in the UI
+
+   const handleSendData = () => {
+   if (props.onDataReceived) {
+     console.log("Sending data to host")
+     props.onDataReceived('Data from micro-app: ' + new Date().toLocaleString())
+   }
+ }
+
+ return  <div>
+     <h2>Micro-Frontend Details Page</h2>
+     {props.initialData && (
+       <p>Message from host: {props.initialData.message}</p>
+     )}
+     <button onClick={handleSendData}>Send Data to Host</button>
+   </div>
+
 }
 
 

@@ -40,6 +40,13 @@ const hostData = {
  message: 'Hello from the Host App!',
 }
 
+// Callback to receive data from micro-app
+function handleDataFromMicroApp(data: any) {
+ console.log('Data received from micro-app:', data)
+ // You can update state or perform other actions here
+}
+
+
 
 // Register micro-app
 // We will have one application that is going to run on port 4173
@@ -54,7 +61,8 @@ registerMicroApps([
     container: '#micro-app-container',
     activeRule: '/app', // route in host app
     props:{
-      initialData:hostData  // Pass the props down
+      initialData:hostData,  // Pass the props down
+      onDataReceived: handleDataFromMicroApp // Callback retrieved from the micro app
     }
   },
 ]);

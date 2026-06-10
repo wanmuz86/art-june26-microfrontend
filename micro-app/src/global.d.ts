@@ -16,5 +16,6 @@ interface Window {
 interface MicroAppProps {
  initialData?: {
    message: string
- }
+ },
+  onDataReceived?: (data: any) => void //Callback function to hostapp (pass up data)
 }
